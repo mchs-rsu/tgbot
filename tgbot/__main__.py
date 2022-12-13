@@ -2,15 +2,11 @@ import logging
 import os
 
 from telegram.ext import Updater, CommandHandler
+from tgbot.conversations.handlers import conv_handler
 
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
-
-
-def greet_user(update, context):
-    print('Вызван /start')
-    update.message.reply_text('Район или РСУ?')
 
 
 def main():
@@ -19,7 +15,7 @@ def main():
 
     dispatcher = updater.dispatcher
 
-    dispatcher.add_handler(CommandHandler('start', greet_user))
+    dispatcher.add_handler(conv_handler)
     updater.start_polling()
     updater.idle()
 
