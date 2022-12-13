@@ -1,5 +1,5 @@
 from telegram import ReplyKeyboardMarkup, Update
-from telegram.ext import CallbackContext
+from telegram.ext import CallbackContext, ConversationHandler
 from typing import Any
 
 from tgbot.conversations import states
@@ -14,6 +14,15 @@ def main_keyboard():
 
 def start(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:
     """Начало диалога, предложение выбрать поиск по району или РСУ"""
-    update.message.reply_text('Район или РСУ?', reply_markup=main_keyboard())
+
+    question = 'Что интересует, район или РСУ?'
+    update.message.reply_text(question, reply_markup=main_keyboard())
 
     return states.CHOOSING
+
+
+def cancel(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:
+    question = 'Bue!'
+    update.message.reply_text(question)
+
+    return ConversationHandler.END

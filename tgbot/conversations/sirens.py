@@ -6,9 +6,9 @@ from tgbot.conversations.core import JSON
 from tgbot.conversations.core import main_keyboard
 
 
-def district_choise(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:
-    question = 'В каком районе нужно найти РСУ?'
-    context.user_data['choice'] = 'district'
+def siren_choise(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:
+    question = 'Какая РСУ интересует?'
+    context.user_data['choice'] = 'siren'
     update.message.reply_text(question, reply_markup=main_keyboard)
 
-    return states.DISTRICT_STATS
+    return states.SIREN_STATS

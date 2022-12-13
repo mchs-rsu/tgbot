@@ -1,8 +1,9 @@
-from tgbot.conversations.core import main_keyboard
 from telegram.ext import CommandHandler, ConversationHandler, Filters, MessageHandler
 
 from tgbot.conversations import states
-from tgbot.conversations.core import start
+from tgbot.conversations.core import start, cancel
+from tgbot.conversations.districts import district_choise
+from tgbot.conversations.sirens import siren_choise
 
 
 conv_handler = ConversationHandler(
@@ -10,11 +11,12 @@ conv_handler = ConversationHandler(
     states={
         states.CHOOSING: [
             MessageHandler(
-                Filters.regex('^(District|Район)$'), city_choice,
+                Filters.regex('^(District|Район)$'), district_choise,
             ),
             MessageHandler(
-                Filters.regex('^(Siren|РСУ)$'), place_choice,
+                Filters.regex('^(Siren|РСУ)$'), siren_choise,
             ),
         ],
-    }
+    },
+    fallbacks=[CommandHandler('cancel', cancel)],
 )
