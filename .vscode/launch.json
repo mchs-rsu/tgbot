@@ -9,7 +9,7 @@
             "type": "python",
             "request": "launch",
             "module": "tgbot",
-            "console": "integratedTerminal",
+            "console": "internalConsole",
             "justMyCode": true
         }
     ]
