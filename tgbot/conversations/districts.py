@@ -30,6 +30,7 @@ def district_stats(update: Update, context: CallbackContext[JSON, JSON, JSON]) -
     district = districts[0]
     district_sirens = api.districts.get_for_district(district.uid)
 
+    update.message.reply_text(f'{district.name} район:')
     siren_name = [siren.name for siren in district_sirens]
     update.message.reply_text(', '.join(siren_name))
     context.user_data['district_id'] = district.uid
