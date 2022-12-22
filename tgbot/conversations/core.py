@@ -9,7 +9,7 @@ JSON = dict[str, Any]
 
 
 def main_keyboard():
-    return ReplyKeyboardMarkup([['District', 'Siren']], resize_keyboard=True)
+    return ReplyKeyboardMarkup([['Район', 'РСУ']], resize_keyboard=True)
 
 
 def start(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:

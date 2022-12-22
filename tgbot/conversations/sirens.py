@@ -41,18 +41,18 @@ def siren_stats(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> i
         f'Район: {district.name} \n'
         f'Тип: {siren.type} \n'
         f'Принадлежность: {siren.own} \n'
-        f'Инженер: {siren.engineer} \n'
-        f'Последний объезд: {siren.date} \n'
+#        f'Инженер: {siren.engineer} \n'
+#        f'Последний объезд: {siren.date} \n'
         f'Состояние: {siren.condition} \n'
         f'Идентификатор: {siren.ident} \n'
         f'IP: {siren.ip} \n'
         f'Маска: {siren.mask} \n'
         f'Шлюз: {siren.gateway} \n'
         f'Адрес: {siren.adress} \n'
-        f'Координаты: {siren.geo} \n'
+#        f'Координаты: {siren.geo} \n'
         f'Комментарий: {siren.comment}'
     )
 
-    update.message.reply_html(answer)
+    update.message.reply_html(answer, reply_markup=main_keyboard())
 
     return states.CHOOSING
