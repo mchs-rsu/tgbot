@@ -1,4 +1,4 @@
-from telegram import ReplyKeyboardMarkup, Update
+from telegram import ReplyKeyboardMarkup, Update, InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import CallbackContext, ConversationHandler
 from typing import Any
 
@@ -10,6 +10,14 @@ JSON = dict[str, Any]
 
 def main_keyboard():
     return ReplyKeyboardMarkup([['Район', 'РСУ']], resize_keyboard=True)
+
+
+def siren_keyboard(sirens):
+    inlinekeyboard = []
+    for siren in sirens:
+        inlinekeyboard.append([InlineKeyboardButton(f'{siren}', callback_data=siren)])
+
+    return InlineKeyboardMarkup(inlinekeyboard)
 
 
 def start(update: Update, context: CallbackContext[JSON, JSON, JSON]) -> int:
