@@ -3,7 +3,7 @@ from telegram.ext import CallbackContext
 
 from tgbot.conversations import states
 from tgbot.conversations.core import JSON
-from tgbot.conversations.core import main_keyboard
+from tgbot.conversations.core import main_keyboard, siren_keyboard
 from tgbot.conversations.api import client as api
 
 
@@ -29,10 +29,10 @@ def district_stats(update: Update, context: CallbackContext[JSON, JSON, JSON]) -
 
     district = districts[0]
     district_sirens = api.districts.get_for_district(district.uid)
-
-    update.message.reply_text(f'{district.name} район:')
     siren_name = [siren.name for siren in district_sirens]
-    update.message.reply_text(', '.join(siren_name))
+
+    update.message.reply_text(f'{district.name} район:', reply_markup=siren_keyboard(siren_name))
+
     context.user_data['district_id'] = district.uid
 
     return states.SIREN_STATS
